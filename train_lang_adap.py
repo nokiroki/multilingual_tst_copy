@@ -129,6 +129,8 @@ def main():
                     or (len(train_loader) < opt.eval_step
                         and step % len(train_loader) == 0)):
                 evaluate(model, loss_fn, valid_loader, tokenizer, epoch, step)
+                if not os.path.exists('checkpoints'):
+                    os.makedirs('checkpoints')
                 save_path = 'checkpoints/mbart_lang_adap_{}.chkpt'.format(opt.lang)
                 torch.save(model.state_dict(), save_path)
                 print('[Info] The checkpoint file has been updated.')

@@ -122,6 +122,8 @@ def main():
                         and step % len(train_loader) == 0)):
                 valid_loss = evaluate(model, loss_fn, valid_loader, tokenizer, epoch, step)
                 if eval_loss >= valid_loss:
+                    if not os.path.exists('checkpoints'):
+                        os.makedirs('checkpoints')
                     save_path = 'checkpoints/mbart_en_adap_{}_{}.chkpt'.format(
                         opt.lang, opt.style)
                     torch.save(model.state_dict(), save_path)
