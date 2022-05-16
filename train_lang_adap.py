@@ -4,6 +4,7 @@ import os
 import time
 import argparse
 import numpy as np
+from tqdm import tqdm
 
 import torch
 import torch.nn as nn
@@ -49,14 +50,14 @@ def evaluate(model, loss_fn, valid_loader, tokenizer, epoch, step):
 def main():
     parser = argparse.ArgumentParser('Language adaptation training')
     parser.add_argument('-lang', default='it_IT', type=str, help='language name')
-    parser.add_argument('-acc_steps', default=8, type=int, help='accumulation_steps')
+    parser.add_argument('-acc_steps', default=6, type=int, help='accumulation_steps')
     parser.add_argument('-lr', default=1e-5, type=float, help='initial earning rate')
     parser.add_argument('-steps', default=30, type=int, help='force stop at x steps')
     parser.add_argument('-epoch', default=30, type=int, help='force stop at x epoch')
     parser.add_argument('-dataset', default='news', type=str, help='the dataset name')
-    parser.add_argument('-batch_size', default=32, type=int, help='the size in a batch')
+    parser.add_argument('-batch_size', default=12, type=int, help='the size in a batch')
     parser.add_argument('-seed', default=42, type=int, help='pseudo random generator seed')
-    parser.add_argument('-log_step', default=1000, type=int, help='print log every x step')
+    parser.add_argument('-log_step', default=20, type=int, help='print log every x step')
     parser.add_argument('-eval_step', default=10000, type=int, help='evaluate every x step')
 
     opt = parser.parse_args()
@@ -131,7 +132,7 @@ def main():
                 save_path = 'checkpoints/mbart_lang_adap_{}.chkpt'.format(opt.lang)
                 torch.save(model.state_dict(), save_path)
                 print('[Info] The checkpoint file has been updated.')
-                if (step >= opt.steps):
+                if step >= opt.steps and opt.epoch == 1:
                     exit()
 
 if __name__ == "__main__":

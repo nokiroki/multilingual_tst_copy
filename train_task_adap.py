@@ -19,7 +19,7 @@ from utils.dataset import read_insts, BartIterator
 
 logging.set_verbosity_error()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-device = 'cuda' if cuda.is_available() else 'cpu'
+device = 'cuda:2' if cuda.is_available() else 'cpu'
 
 
 def evaluate(model, loss_fn, valid_loader, tokenizer, epoch, step):
@@ -49,7 +49,7 @@ def main():
     parser.add_argument('-style', default=0, type=int, help='transfer inf. to for.')
     parser.add_argument('-lr', default=1e-5, type=float, help='initial earning rate')
     parser.add_argument('-epoch', default=30, type=int, help='force stop at 20 epoch')
-    parser.add_argument('-batch_size', default=32, type=int, help='the size in a batch')
+    parser.add_argument('-batch_size', default=12, type=int, help='the size in a batch')
     parser.add_argument('-dataset', default='xformal', type=str, help='the dataset name')
     parser.add_argument('-patience', default=3, type=int, help='early stopping fine-tune')
     parser.add_argument('-seed', default=42, type=int, help='pseudo random generator seed')
@@ -74,8 +74,8 @@ def main():
             param.requires_grad = True
     model.to(device).train()
 
-    train_src, train_tgt = read_insts(opt.dataset, opt.style, 'train', 'en_XX')
-    valid_src, valid_tgt = read_insts(opt.dataset, opt.style, 'valid', 'en_XX')
+    train_src, train_tgt = read_insts(opt.dataset, opt.style, 'train', opt.lang)
+    valid_src, valid_tgt = read_insts(opt.dataset, opt.style, 'valid', opt.lang)
     print('[Info] {} instances from train set'.format(len(train_src)))
     print('[Info] {} instances from valid set'.format(len(valid_tgt)))
 
