@@ -24,6 +24,7 @@ device = 'cuda:2' if cuda.is_available() else 'cpu'
 
 def evaluate(model, loss_fn, valid_loader, tokenizer, epoch, step):
     '''Evaluation function for mBART'''
+    print('Start evaluation on val')
     model.eval()
     loss_list = []
     with torch.no_grad():
