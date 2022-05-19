@@ -90,7 +90,8 @@ def main():
     optimizer = ScheduledOptim(
         torch.optim.Adam(filter(lambda x: x.requires_grad, model.parameters()), 
             betas=(0.9, 0.98), eps=1e-09), opt.lr, 1000)
-
+    
+    print('Start training')
     loss_list = []
     start = time.time()
     step, acc_step = 0, 0
