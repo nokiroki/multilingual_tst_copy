@@ -2,6 +2,7 @@
 
 import time
 import random
+from tqdm import tqdm
 
 random.seed(1024)
 import numpy as np
@@ -19,9 +20,10 @@ def read_insts_de(dataset, prefix, lang):
         model_path, src_lang=lang)
     file = 'data/{}/{}.{}'.format(dataset, prefix, lang)
 
+    print('Start reading the data for language adaptation')
     seqs = []
     with open(file, 'r') as f:
-        for i, line in enumerate(f.readlines()):
+        for i, line in tqdm(enumerate(f.readlines())):
             seq_id = tokenizer.encode(line.strip()[:130])
             seqs.append(seq_id)
     del tokenizer
@@ -39,10 +41,11 @@ def read_insts(dataset, style, prefix, lang):
     else:
         src_file = 'data/{}/{}_{}.1'.format(dataset, prefix, lang)
         tgt_file = 'data/{}/{}_{}.0'.format(dataset, prefix, lang)
-
+    
+    print('Start reading the data for task adaptation')
     src_seq, tgt_seq = [], []
     with open(src_file, 'r') as f1, open(tgt_file, 'r') as f2:
-        for s, t in zip(f1.readlines(), f2.readlines()):
+        for s, t in tqdm(zip(f1.readlines(), f2.readlines())):
             s = tokenizer.encode(s[:130])
             t = tokenizer.encode(t[:130])
             src_seq.append(s)
