@@ -29,7 +29,7 @@ def main():
     parser.add_argument('-lang', default='en_XX', type=str, help='the name of language')
     parser.add_argument('-seed', default=42, type=int, help='pseudo random number seed')
     parser.add_argument('-batch_size', default=128, type=int, help='max sents in a batch')
-    parser.add_argument('-dataset', default='xformal', type=str, help='the dataset name')
+    parser.add_argument('-dataset', default='detox', type=str, help='the dataset name')
 
     opt = parser.parse_args()
     torch.manual_seed(opt.seed)
