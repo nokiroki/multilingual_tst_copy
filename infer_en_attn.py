@@ -22,7 +22,7 @@ def main():
     parser.add_argument('-bs', default=64, type=int, help='the batch size')
     parser.add_argument("-seed", default=42, type=int, help="the random seed")
     parser.add_argument('-style', default=0, type=int, help='from inf. to for.')
-    parser.add_argument('-dataset', default='xformal', type=str, help='dataset')
+    parser.add_argument('-dataset', default='detox', type=str, help='dataset')
     parser.add_argument('-lang', default='it_IT', type=str, help='language name')
 
     opt = parser.parse_args()
