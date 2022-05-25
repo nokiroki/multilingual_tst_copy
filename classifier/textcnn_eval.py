@@ -24,7 +24,7 @@ def main():
     parser.add_argument('-style', default=0, type=int, help='from inf. to for.')
     parser.add_argument('-dim', default=300, type=int, help='the embedding size')
     parser.add_argument('-lang', default='it_IT', type=str, help='language name')
-    parser.add_argument('-dataset', default='xformal', type=str, help='dataset name')
+    parser.add_argument('-dataset', default='detox', type=str, help='dataset name')
     parser.add_argument('-model', default='mbart', type=str, help='the name of model')
     parser.add_argument('-seed', default=42, type=int, help='pseudo random number seed')
     parser.add_argument('-batch_size', default=128, type=int, help='max sents in a batch')
