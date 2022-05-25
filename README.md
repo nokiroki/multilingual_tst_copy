@@ -42,6 +42,8 @@ python infer_en_data.py -dataset detox -lang it_IT -style 0
 python infer_en_attn.py -dataset detox -lang it_IT -style 0    
 ```
 
+You can also reproduce results via this [notebook](https://colab.research.google.com/drive/15khUtMvynZyGOJhb5-OBJaVlsBPM1sYG?usp=sharing)
+
 ## Citation
 ```
 @inproceedings{lai-etal-2022-multi,
