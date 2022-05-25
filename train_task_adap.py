@@ -51,7 +51,7 @@ def main():
     parser.add_argument('-lr', default=1e-5, type=float, help='initial earning rate')
     parser.add_argument('-epoch', default=30, type=int, help='force stop at 20 epoch')
     parser.add_argument('-batch_size', default=12, type=int, help='the size in a batch')
-    parser.add_argument('-dataset', default='xformal', type=str, help='the dataset name')
+    parser.add_argument('-dataset', default='detox', type=str, help='the dataset name')
     parser.add_argument('-patience', default=3, type=int, help='early stopping fine-tune')
     parser.add_argument('-seed', default=42, type=int, help='pseudo random generator seed')
     parser.add_argument('-log_step', default=100, type=int, help='print logs every x step')
