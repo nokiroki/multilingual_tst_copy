@@ -7,7 +7,7 @@ import argparse
 
 parser = argparse.ArgumentParser('Metrics')
 parser.add_argument('-device', default='cuda:2', type=str, help='device_of_model_calculation')
-parser.add_argument('-target', default='data/xformal/test_ru_RU.0', type=str, help='target file path')
+parser.add_argument('-target', default='data/detox/test_ru_RU.0', type=str, help='target file path')
 parser.add_argument('-predict', default='data/outputs/mbart_en_data_ru_RU.0', type=str, help='prediction file path')
 parser.add_argument('-df_res', default='result/df_res.csv', type=str, help='path to df with results')
 parser.add_argument('-ppl_model_name', default='sberbank-ai/rugpt2large', type=str, help='model name from ppl')
@@ -19,7 +19,7 @@ device = opt.device
 
 # device = 'cuda:2' if torch.cuda.is_available() else 'cpu'
 # pred_path = 'data/outputs/mbart_en_data_ru_RU.0'
-# target_path = 'data/xformal/test_ru_RU.0'
+# target_path = 'data/detox/test_ru_RU.0'
 # df_res_path = 'result/df_res.csv'
 # model_name_or_path = "sberbank-ai/rugpt2large"
 
